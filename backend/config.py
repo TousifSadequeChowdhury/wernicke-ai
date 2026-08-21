@@ -7,8 +7,13 @@ directly — it all comes through this module.
 """
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+import os
+import logging
 
+os.environ["ANONYMIZED_TELEMETRY"] = "False"
+logging.getLogger("chromadb.telemetry.product.posthog").setLevel(logging.CRITICAL)
+
+from dotenv import load_dotenv
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
